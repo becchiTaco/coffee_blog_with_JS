@@ -1,0 +1,408 @@
+/* Se establecen variables de fuentes y colores */
+:root {
+    --fuenteHeading: 'PT Sans', sans-serif;
+    --fuenteParrafo: 'Open Sans', sans-serif;
+
+    --primario: #784d3c;
+    --gris: #e1e1e1;
+    --blanco: #ffffff;
+    --negro: #000000;
+}
+
+/**************************** Globales ****************************/
+/* Hace que el borde del padding no afecte a los elementos y con font-size al 62.5% (1 rem = 10px)*/
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+/**/
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+/* Se define la fuente de parrafos, el tamaño y el interlineado del texto */
+body {
+    font-family: var(--fuenteParrafo);
+    font-size: 1.6rem;
+    line-height: 2;
+}
+
+/* Se encarga de centrar el contenido de forma horizontal para evitar que se expanda a las orillas con un minimo del 90% antes de llegar a los 1200px y cuando se 
+superan los 1200px el contenido no va a superar esos 1200px y el margin centra todo el contenido en vez de tenerlo pegado todo de lado izquierdo */
+.contenedor {
+    width: min(90%, 120rem);
+    margin: 0 auto;
+}
+
+/* Se quita la decoración de los enlaces de texto */
+a {
+    text-decoration: none;
+}
+
+/* Se define la fuente de los encabezados */
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--fuenteHeading);
+    line-height: 1.2;
+}
+
+/* Se define el tamaño de la fuente de los encabezados */
+h1 {
+    font-size: 4.8rem;
+}
+
+h2 {
+    font-size: 4rem;
+}
+
+h3 {
+    font-size: 3.2rem;
+}
+
+h4 {
+    font-size: 2.8rem;
+}
+
+img {
+    max-width: 100%;
+}
+
+/**************************** Utilidades ****************************/
+/* Utildiad funcional para remover el margen de los elementos */
+.no-margin-top {
+    margin-top: 0;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+/* Utilidad encargada de quitar el padding */
+.no-padding {
+    padding: 0;
+}
+
+/* Utildiad encargada de centrar texto */
+.centrar-texto {
+    text-align: center;
+}
+
+/**************************** Header ****************************/
+/* Se define la imagen de fondo, con altura de 60 rem, con bg-size:cover se cubre el área del elemento sin distorcionar la relación de aspecto, con repeat evitamos 
+que la imagen se repita al alargar la imagen, y posteriormente con position se centra horizontal y vertical para tener una imagen de referencia al cambiar el tamaño 
+de la página, conserva el tamaño y se sigue mostrando */
+.webp .header {
+    background-image: url(../img/banner.webp);
+}
+
+.no-webp .header {
+    background-image: url(../img/banner.jpg);
+}
+
+.header {
+    height: 60rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+/* Se encarga de centrar el texto, cambiar el color del texto y agregar un espacio arriba, pero este espacio influye en todo el header, pero con las configuraciones
+de la barra se arreglará esto. */
+.header__texto {
+    text-align: center;
+    color: var(--blanco);
+    margin-top: 5rem;
+}
+
+/* En tamaño computadora, genera un margen de 15rem entre el texto y la barra superior */
+@media (min-width: 768px) {
+    .header__texto {
+        margin-top: 15rem;
+    }
+}
+
+.barra {
+    padding-top: 4rem;
+}
+
+/* En tamaño computadora, se habilita el display en flex para organizar el logo y la barra de navegación de forma horizontal, se justifica con space-between para separar
+ el logo de la barra de navegación, en esta sección se alinean los items con center para que de forma vertical se separe del borde*/
+@media (min-width: 768px) {
+    .barra {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+/* Color de logo a blanco */
+.logo {
+    color: var(--blanco);
+}
+
+/* Cambia el tamaño a 400 */
+.logo__nombre {
+    font-weight: 400;
+}
+
+/* Cambia el tamaño a 700 */
+.logo__bold {
+    font-weight: 700;
+}
+
+/* En la barra, la parte de navegación se ordena de forma horizontal y genera una separación entre componenetes de 2rem */
+@media (min-width: 768px) {
+    .navegacion {
+        display: flex;
+        gap: 2rem;
+    }
+}
+
+/* con display block se organizan los elementos de forma vertical, se centra el texto, se cambia el tamaño del texto y cambia el color del texto a blanco */
+.navegacion__enlace {
+    display: block;
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--blanco);
+}
+
+/**************************** Contenido Principal ****************************/
+/* En pantallas de computadora, se usa un grid para separar en columnas donde se crean dos columnas, Siendo el blog con 2/3 más grande que la parte de cursos y talleres
+(1/3), al final se genera una separación entre los dos elementos de 4rem con gap*/
+@media (min-width: 786px) {
+    .contenido-principal {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 4rem;
+    }
+}
+
+/* Se crea una linea para separar cada blog y agrega un margen inferior de 2rem */
+.entrada {
+    border-bottom: 1px solid var(--gris);
+    margin-bottom: 2rem;
+}
+
+/* Para la última entrada se borra la linea y se quita el margen inferior. */
+.entrada:last-of-type {
+    border: none;
+    margin-bottom: 0;
+}
+
+/* Con block hacemos que el tamaño del botón se ajuste horizontalmente al tamaño del elemento ocupado, se cambia la fuente, color, ancho interno (1rem 3rem), tamaño del 
+texto, tipo de texto, se pasa a negritas y genera un margen inferior de 2 rem*/
+.boton {
+    display: block;
+    font-family: var(--fuenteHeading);
+    color: var(--blanco);
+    text-align: center;
+    padding: 1rem 3rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    border: none;
+
+}
+
+.boton:hover {
+    cursor: pointer;
+}
+
+/* Se usa el display inline-block para que puede verse la separación del margen inferior, si se usara solo inline, no se podrá poner el margen y se juntarán las 
+separaciones */
+@media (min-width: 786px) {
+    .boton {
+        display: inline-block;
+    }
+}
+
+/* Se establece un color de fondo solo para los botones internos del contenido primario */
+.boton--primario {
+    background-color: var(--negro);
+}
+
+/* Se establece un color de fondo solo para los botones internos de la zona lateral */
+.boton--secundario {
+    background-color: var(--primario);
+}
+
+/* Quita el estilo de la lista creada en la zona lateral*/
+.cursos {
+    list-style: none;
+}
+
+/* genera las mismas lineas de separación que en la sección principal con la propia separación */
+.widget-curso {
+    border-bottom: 1px solid var(--gris);
+    margin-bottom: 2rem;
+}
+
+/* Al igual que en la zona principal se borra la linea del último elemento  */
+.widget-curso:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+
+}
+
+/* AQUÍ TAMBIÉN ESTAMOS MODIFICANDO PARTES DE LA PÁGINA DE CURSO */
+/* Se declara tipo y estilo de fuente */
+.widget-curso__label,
+.curso__label {
+    font-family: var(--fuenteHeading);
+    font-weight: 700;
+}
+
+/* se declara el estilo de fuente */
+.widget-curso__info,
+.curso__info {
+    font-weight: normal;
+}
+
+/* se aumenta el tamaño de fuente */
+.widget-curso__label,
+
+.widget-curso__info,
+.curso__label,
+.curso__info {
+    font-size: 2rem;
+}
+
+/* declara el color de fondo, genera un padding (incremento de borde interno del elemento) de 3rem y un margen (incremento de borde externo del elemento) de 4 rem */
+.footer {
+    background-color: var(--negro);
+    padding-bottom: 3rem;
+    margin-top: 4rem;
+}
+
+/**************************** Sobre Nosotros ****************************/
+@media (min-width: 768px) {
+    .sobre-nosotros {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+    }
+
+    /* PARA EL MISMO RESULTADO USANDO FLEX BOX USAMOS EL SIGUIENTE CÓDIGO 
+    .sobre-nosotros {
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+    .sobre-nosotros__texto {
+        flex: 0 0 calc(50% - 1rem);
+    }
+
+    .sobre-nosotros__imagen {
+        flex: 0 0 calc(50% - 1rem);
+    }*/
+}
+
+/**************************** Cursos  ****************************/
+.curso {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--gris);
+}
+
+.curso:last-of-type {
+    border: none;
+}
+
+@media (min-width:768px) {
+    .curso {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        column-gap: 2rem;
+    }
+}
+
+/**************************** Contacto  ****************************/
+.correcto {
+    background-color: rgb(0, 185, 28);
+    text-align: center;
+    padding: 1rem;
+    color: var(--blanco);
+    text-transform: uppercase;
+}
+
+.error {
+    background-color: rgb(185, 0, 0);
+    text-align: center;
+    padding: 1rem;
+    color: var(--blanco);
+    text-transform: uppercase;
+}
+
+/* Se inserta la imagen de fondo, se pone la altura a 40rem, se establece el tipo de tamaño del BG y el formato en no-repeat */
+.contacto-bg {
+    background-image: url(../img/contacto.jpg);
+    height: 40rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Se establece el color del formulario, con un margen de -5rem de altura y ancho automático para que se superponga a la imagen de BG
+con un width de 95% para ocupar solo el 95% de su area y un margen interno (padding 5rem) */
+.formulario {
+    background-color: var(--blanco);
+    margin: -5rem auto;
+    width: 95%;
+    padding: 5rem;
+}
+
+/* Se habilita display flex, con un margen inferiro de 2 rem, esto para poner en columnas la etiqueta y el campo de cada parte  */
+.campo {
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+/* Se encarga de la zona de la etiqueta de zona, el flex se encarga de que no crezca o se encoja, que no se encoja con poco espacio
+y que tendrá un 9rem de tamaño inicial*/
+.campo__label {
+    flex: 0 0 9rem;
+    text-align: right;
+    padding-right: 1rem;
+}
+
+/* Establece el resto del uso del área para la zona de escritura y marca un borde en gris solido */
+.campo__field {
+    flex: 1;
+    border: 1px solid var(--gris);
+}
+
+/* Le da una altura de 20 rem solo al textarea */
+.campo__field--textarea {
+    height: 20rem;
+}
+
+/* Genera divisón en filas para etiqueta y area de texto y el espacio que va a tomar (.campo), genera un lo mismo que en 
+.campo pero con una diferencia de que un elemento va a tomar más espacio que el otro (.campo:nth-last-child(2), alinea el
+ texto a la izquierda y genera un margen inferior de 1rem, Genera un margen superior de 1rem */
+@media (max-width: 767px) {
+    .campo {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .campo:nth-last-child(2) {
+        display: grid;
+        grid-template-rows: 10% 90%;
+    }
+
+    /*  */
+    .campo__label {
+        text-align: left;
+        margin-bottom: 1rem;
+    }
+
+    /*  */
+    .campo__field--textarea {
+        margin-top: 1rem;
+    }
+}
